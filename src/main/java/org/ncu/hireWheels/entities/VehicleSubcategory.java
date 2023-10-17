@@ -1,35 +1,71 @@
 package org.ncu.hireWheels.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.math.BigDecimal;
 
+import jakarta.persistence.*;
 @Entity
-@Table(name="vehicle_subcategory")
+@Table(name = "vehicle_subcategory")
 public class VehicleSubcategory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "vehicle_subcategory_id")
+    private Long vehicleSubcategoryId;
 
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long vehicleSubcategoryId;
+    @Column(name = "vehicle_subcategory_name", unique = true)
+    private String vehicleSubcategoryName;
 
-	    @Column(nullable = false, unique = true, length = 50)
-	    private String vehicleSubcategoryName;
+    @Column(name = "price_per_day")
+    private BigDecimal pricePerDay;
 
-	    @Column(nullable = false, precision = 10, scale = 2)
-	    private double pricePerDay;
+    public VehicleSubcategory() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	    @ManyToOne
-	    @JoinColumn(name = "vehicle_category_id", nullable = false)
-	    private VehicleCategory vehicleCategory;
+	public VehicleSubcategory(Long vehicleSubcategoryId, String vehicleSubcategoryName, BigDecimal pricePerDay,
+			VehicleCategory category) {
+		super();
+		this.vehicleSubcategoryId = vehicleSubcategoryId;
+		this.vehicleSubcategoryName = vehicleSubcategoryName;
+		this.pricePerDay = pricePerDay;
+		this.category = category;
+	}
 
-		public VehicleSubcategory() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
+	public Long getVehicleSubcategoryId() {
+		return vehicleSubcategoryId;
+	}
 
+	public void setVehicleSubcategoryId(Long vehicleSubcategoryId) {
+		this.vehicleSubcategoryId = vehicleSubcategoryId;
+	}
+
+	public String getVehicleSubcategoryName() {
+		return vehicleSubcategoryName;
+	}
+
+	public void setVehicleSubcategoryName(String vehicleSubcategoryName) {
+		this.vehicleSubcategoryName = vehicleSubcategoryName;
+	}
+
+	public BigDecimal getPricePerDay() {
+		return pricePerDay;
+	}
+
+	public void setPricePerDay(BigDecimal pricePerDay) {
+		this.pricePerDay = pricePerDay;
+	}
+
+	public VehicleCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(VehicleCategory category) {
+		this.category = category;
+	}
+
+	@ManyToOne
+    @JoinColumn(name = "vehicle_category_id")
+    private VehicleCategory category;
+	
+	
 }
