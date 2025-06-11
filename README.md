@@ -1,5 +1,5 @@
 # hireWheels
-Made by Sunil Kharsu(20csu371), Bhavesh (20csu215) and Harit(20csu247)
+Made by Sunil Kharsu(20csu371)
 
 
 Github Link - https://github.com/SunilKharsu/hireWheels
